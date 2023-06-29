@@ -41,6 +41,9 @@ def softmax(X):
     softmax_output = np.exp(X) / np.exp(X).sum(axis=1, keepdims=True)      
     return softmax_output
 
+def gaussian(dj, sigma):
+    return np.exp(-(dj/(2*sigma))**2)
+
 # Test cases
 if __name__ == "__main__":
     X = np.array([-1, 2, 0, -3, 4])

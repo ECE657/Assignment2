@@ -20,3 +20,22 @@ def data_split_train_test(df_X, df_Y, train_portion:float=0.8, seed:int=42):
     df_X_test = df_test[df_X.columns]
     df_Y_test = df_test[df_Y.columns]
     return df_X_train, df_Y_train, df_X_test, df_Y_test
+
+def prepare_datasource():
+    i = np.arange(0,21)  #i = 0..20
+    j = np.arange(0,21)  #j = 0..20
+    xi, xj = np.meshgrid(-2.0 + 0.2 * i, -2.0 + 0.2*j)  #get all possible combination (xi,xj)
+
+    xi_flattened = xi.reshape(-1) #convert xi 2d to 1d array
+    xj_flattened = xj.reshape(-1) #convert xj 2d to 1d array
+
+    samples = np.column_stack((xi_flattened, xj_flattened))  #get pair (xi,xj)
+    training_indices = np.random.choice(samples.shape[0], size=441, replace=False) #random 441 indices
+    X = samples[training_indices, :] #shape (441,2)
+    y = []
+    for point in X:
+        y.append(f(point[0], point[1]))
+    return X, y
+
+def f(x1, x2):
+    return 1 if x1*x1 + x2*x2 <= 1 else -1
