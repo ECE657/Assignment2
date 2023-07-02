@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import os
 
 def data_split_train_test(df_X, df_Y, train_portion:float=0.8, seed:int=42):
     """
@@ -22,6 +23,14 @@ def data_split_train_test(df_X, df_Y, train_portion:float=0.8, seed:int=42):
     return df_X_train, df_Y_train, df_X_test, df_Y_test
 
 def prepare_datasource():
+    data_exists = os.path.exists('training_data.csv')
+    label_exists = os.path.exists('training_labels.csv')
+    if data_exists and label_exists:
+        print("Enter here")
+        data = np.loadtxt('training_data.csv', delimiter=',')
+        labels = np.loadtxt('training_labels.csv', delimiter=',')
+        return data, labels
+    
     i = np.arange(0,21)  #i = 0..20
     j = np.arange(0,21)  #j = 0..20
     xi, xj = np.meshgrid(-2.0 + 0.2 * i, -2.0 + 0.2*j)  #get all possible combination (xi,xj)
@@ -35,6 +44,8 @@ def prepare_datasource():
     y = []
     for point in X:
         y.append(f(point[0], point[1]))
+    np.savetxt('training_data.csv', X, delimiter=',')
+    np.savetxt('training_labels.csv', y, delimiter=',')
     return X, y
 
 def f(x1, x2):
