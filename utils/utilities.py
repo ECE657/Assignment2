@@ -32,12 +32,12 @@ def plot_analysis(title, y_label, x_data, y_data, color, x_label="Radius"):
     plt.plot(x_data, y_data, color)
     plt.show()
 
-def plot_full_analysis(title, y_label, x_data, y1_data, y2_data, y3_data, color1, color2, color3, x_label="Radius"):
+def plot_full_analysis(title, y_label, x_data, y1_data, y2_data, y3_data, color1, color2, color3, label1, label2, label3, x_label="Radius"):
     plt.title(title)
     plt.xlabel(x_label)
     plt.ylabel(y_label)
-    plt.plot(x_data, y1_data, color=color1, label='Full selection')
-    plt.plot(x_data, y2_data, color=color2, label='Random selection')
-    plt.plot(x_data, y3_data, color=color3, label='Kmeans selection')
+    plt.plot(x_data, y1_data, color=color1, label=label1)
+    plt.plot(x_data, y2_data, color=color2, label=label2)
+    plt.plot(x_data, y3_data, color=color3, label=label3)
     plt.legend()
     plt.show()
