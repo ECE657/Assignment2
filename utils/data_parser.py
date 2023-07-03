@@ -26,7 +26,6 @@ def prepare_datasource():
     data_exists = os.path.exists('training_data.csv')
     label_exists = os.path.exists('training_labels.csv')
     if data_exists and label_exists:
-        print("Enter here")
         data = np.loadtxt('training_data.csv', delimiter=',')
         labels = np.loadtxt('training_labels.csv', delimiter=',')
         return data, labels
