@@ -47,7 +47,7 @@ def plot_data_in_comparison(X_train, y_train, X_test, y_test, X_pred, y_pred):
 
     axs[0].set_title('Training data')
     axs[1].set_title('Testing data (expectation)')
-    axs[2].set_title('Prediction')
+    axs[2].set_title('Prediction(sigma=2.0)')
     plot_data(X_train, y_train, axs[0], s=50)
     plot_data(X_test, y_test, axs[1], s=50)
     plot_data(X_pred, y_pred, axs[2], s=50)
